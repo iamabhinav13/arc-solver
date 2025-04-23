@@ -41,15 +41,10 @@ port = 5000
 st.sidebar.header("Dataset Options")
 
 dataset_options = {
-    "Sample Task": "sample_task.json"
+    "Training": "arc-agi_training-challenges.json",
+    "Evaluation": "arc-agi_evaluation-challenges.json",
+    "Test": "arc-agi_test-challenges.json"
 }
-
-# Uncomment these lines when you have the actual competition data files
-# dataset_options.update({
-#     "Training": "arc-agi_training-challenges.json",
-#     "Evaluation": "arc-agi_evaluation-challenges.json",
-#     "Test": "arc-agi_test-challenges.json"
-# })
 
 selected_dataset = st.sidebar.selectbox(
     "Select Dataset:",
@@ -64,11 +59,8 @@ try:
     
     # Load corresponding solutions if available (except for test dataset)
     solutions = None
-    if selected_dataset in ["Sample Task", "Training", "Evaluation"]:
-        if selected_dataset == "Sample Task":
-            solution_path = "sample_solution.json"
-        else:
-            solution_path = dataset_path.replace("challenges", "solutions")
+    if selected_dataset in ["Training", "Evaluation"]:
+        solution_path = dataset_path.replace("challenges", "solutions")
         
         try:
             solutions = load_solutions(solution_path)
@@ -237,7 +229,7 @@ with tabs[2]:
 with tabs[3]:
     st.header("Performance Analysis")
     
-    if tasks and selected_dataset in ["Sample Task", "Training", "Evaluation"] and solutions:
+    if tasks and selected_dataset in ["Training", "Evaluation"] and solutions:
         st.write("Analyze the performance of different reasoning methods on the dataset.")
         
         # Option to limit number of tasks to analyze
