@@ -165,11 +165,12 @@ with tabs[2]:
         st.write("Generate a submission file for the test dataset in the ARC Prize format.")
         
         # Option to limit number of tasks to process
+        max_tasks = max(1, min(240, len(tasks)))
         process_limit = st.slider(
             "Number of tasks to process:",
             min_value=1,
-            max_value=min(240, len(tasks)),
-            value=min(10, len(tasks))
+            max_value=max_tasks,
+            value=min(10, max_tasks)
         )
         
         generate_button = st.button("Generate Submission")
@@ -233,11 +234,12 @@ with tabs[3]:
         st.write("Analyze the performance of different reasoning methods on the dataset.")
         
         # Option to limit number of tasks to analyze
+        max_tasks = max(1, min(100, len(tasks)))
         analysis_limit = st.slider(
             "Number of tasks to analyze:",
             min_value=1,
-            max_value=min(100, len(tasks)),
-            value=min(20, len(tasks))
+            max_value=max_tasks,
+            value=min(20, max_tasks)
         )
         
         analyze_button = st.button("Analyze Performance")
