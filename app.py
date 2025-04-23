@@ -41,11 +41,15 @@ port = 5000
 st.sidebar.header("Dataset Options")
 
 dataset_options = {
-    "Sample Task": "sample_task.json",
-    "Training": "arc-agi_training-challenges.json",
-    "Evaluation": "arc-agi_evaluation-challenges.json",
-    "Test": "arc-agi_test-challenges.json"
+    "Sample Task": "sample_task.json"
 }
+
+# Uncomment these lines when you have the actual competition data files
+# dataset_options.update({
+#     "Training": "arc-agi_training-challenges.json",
+#     "Evaluation": "arc-agi_evaluation-challenges.json",
+#     "Test": "arc-agi_test-challenges.json"
+# })
 
 selected_dataset = st.sidebar.selectbox(
     "Select Dataset:",

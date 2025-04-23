@@ -21,10 +21,20 @@ def load_tasks(file_path: str) -> Dict[str, Any]:
             os.path.join('..', file_path)                    # Check in parent directory
         ]
         
+        found = False
         for path in potential_paths:
             if os.path.exists(path):
                 file_path = path
+                found = True
                 break
+                
+        # If none of the paths exist, provide clear error
+        if not found:
+            print(f"Looking for file in these locations: {potential_paths}")
+            for path in potential_paths:
+                print(f"Path {path} exists: {os.path.exists(path)}")
+                if os.path.isdir(os.path.dirname(path)):
+                    print(f"Directory contents of {os.path.dirname(path)}: {os.listdir(os.path.dirname(path) or '.')}")
     
     try:
         with open(file_path, 'r') as f:
@@ -53,10 +63,20 @@ def load_solutions(file_path: str) -> Dict[str, List[np.ndarray]]:
             os.path.join('..', file_path)                    # Check in parent directory
         ]
         
+        found = False
         for path in potential_paths:
             if os.path.exists(path):
                 file_path = path
+                found = True
                 break
+                
+        # If none of the paths exist, provide clear error
+        if not found:
+            print(f"Looking for solution file in these locations: {potential_paths}")
+            for path in potential_paths:
+                print(f"Path {path} exists: {os.path.exists(path)}")
+                if os.path.isdir(os.path.dirname(path)):
+                    print(f"Directory contents of {os.path.dirname(path)}: {os.listdir(os.path.dirname(path) or '.')}")
     
     try:
         with open(file_path, 'r') as f:
